@@ -1,0 +1,27 @@
+﻿@model IEnumerable<RokoAwards.EFDataAccessLibrary.Models.Award>
+@{
+    ViewData["Title"] = "Award List";
+}
+
+<h1>Award List</h1>
+
+<div class="container">
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <a class="compItem awardDisplay_url" href="@Url.Action("DisplayAward", "Award", new { awardId = item.AwardId })">
+            <div class="awardCard">
+                <div class="awardCardHeader">
+                    <img class="awardCard_image" src="@Url.Content(item.Image.ImagePath)" />
+                    <h4 class="awardCard_title">@item.AwardTitle</h4>
+                </div>
+                <div class="awardCard_creater"><strong>Creater:</strong> @item.Creater.Email</div>
+                <div class="awardCard_date"><strong>Creating date:</strong> @item.CreatingDate</div>
+                <div class="awardCard_type"><strong>Award type:</strong> @item.AwardType</div>
+                <div class="awardCard_description"><strong>Description:</strong> @item.Description</div>
+            </div>
+        </a>
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@model RokoAwards.WebUI.Models.IndexViewModel
+
+@{
+    ViewData["Title"] = "Roko Awards";
+}
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <span class="addAwardBlock">
+                <button type="button" class="btn btn-warning" data-toggle="ajax-modal" data-target="#edit-user" data-url="@Url.Action("AddAward", "Award")">Add award</button>
+
+                <div id="modal-placeholder"></div>
+            </span>
+        </div>
+    </div>
+</div>
+
+<h3>Last awards</h3>
+<div class="container">
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    @foreach (var item in Model.UserAwards)
+    {
+        <a class="compItem userAwardDisplay_url" href="@Url.Action("DisplayUserAward", "Award", new { userAwardId = item.UserAwardId })">
+            <div class="awardCard">
+                <div class="awardCardHeader">
+                    <img class="awardCard_image" src="@Url.Content(item.AwardReceived.Image.ImagePath)" />
+                    <h4 class="awardCard_title">@item.AwardReceived.AwardTitle</h4>
+                </div>
+                <div class="awardCard_recepient"><strong>Recepient:</strong> @item.User.Email</div>
+                <div class="awardCard_sender"><strong>Sender:</strong> @item.FromUser.Email</div>
+                <div class="awardCard_date"><strong>Date:</strong> @item.AwardDate</div>
+                <div class="awardCard_description"><strong>Description:</strong> @item.Description</div>
+            </div>
+        </a>
+    }
+</div>
+
+<page-link page-model="Model.PageViewModel" page-action="Index" page-controller="Home"></page-link>

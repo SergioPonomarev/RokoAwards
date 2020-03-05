@@ -1,0 +1,75 @@
+﻿@model RokoAwards.WebUI.Models.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Registration</h1>
+
+<h4>RegisterModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" asp-controller="Account">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentName" class="control-label">Department</label>
+                <select asp-for="DepartmentName" class="form-control" asp-items="@ViewBag.Departments"></select>
+                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionName" class="control-label">Position</label>
+                <input asp-for="PositionName" class="form-control" />
+                <span asp-validation-for="PositionName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportingManagerEmail" class="control-label">Reporting Manager Email</label>
+                <input asp-for="ReportingManagerEmail" class="form-control" />
+                <span asp-validation-for="ReportingManagerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfJoining" class="control-label">Date of joining</label>
+                <input asp-for="DateOfJoining" class="form-control" />
+                <span asp-validation-for="DateOfJoining" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input asp-for="SpecialUser" type="checkbox" class="form-check-input" />
+                <label asp-for="SpecialUser" class="form-check-label">Special User</label>
+                <span asp-validation-for="SpecialUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

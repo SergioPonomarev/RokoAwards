@@ -1,0 +1,36 @@
+﻿@model RokoAwards.WebUI.Models.CreateAwardModel
+
+@{
+    ViewData["Title"] = "CreateAward";
+}
+
+<h4>Create new award</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAward" asp-controller="Award" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="file" name="newImage" />
+            </div>
+            <div class="form-group">
+                <label asp-for="AwardTitle" class="control-label">Title</label>
+                <input asp-for="AwardTitle" class="form-control" />
+                <span asp-validation-for="AwardTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AwardType" class="control-label"></label>
+                <select asp-for="AwardType" class="form-control" asp-items="@ViewBag.AwardTypes"></select>
+                <span asp-validation-for="AwardType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control awardDescription"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

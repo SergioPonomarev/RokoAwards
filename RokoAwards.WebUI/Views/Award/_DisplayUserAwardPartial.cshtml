@@ -1,0 +1,19 @@
+﻿@model RokoAwards.EFDataAccessLibrary.Models.UserAward
+
+<div class="modal-content">
+    <div class="modal-header d-block">
+        <img src="@Url.Content(Model.AwardReceived.Image.ImagePath)" class="userAwardDisplay_image" />
+        <h5>@Model.AwardReceived.AwardTitle</h5>
+    </div>
+    <div class="modal-body">
+        <div><strong>Award type: </strong>@Model.AwardReceived.AwardType</div>
+        <div><strong>Award description: </strong>@Model.AwardReceived.Description</div>
+        <div><strong>Recipient: </strong>@Model.User.Email</div>
+        <div><strong>Sender: </strong>@Model.FromUser.Email</div>
+        <div><strong>Date: </strong>@Model.AwardDate</div>
+        <div><strong>Description: </strong>@Model.Description</div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+    </div>
+</div>

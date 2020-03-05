@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200219115810_ChangeDeleteBehaviorV1.cs" />
+    <Compile Remove="Migrations\20200219115810_ChangeDeleteBehaviorV1.Designer.cs" />
+    <Compile Remove="Migrations\20200220061843_UserStatusTypeChanged.cs" />
+    <Compile Remove="Migrations\20200220061843_UserStatusTypeChanged.Designer.cs" />
+    <Compile Remove="Migrations\20200303071131_RemovedCompositeKeyFromUserAward.cs" />
+    <Compile Remove="Migrations\20200303071131_RemovedCompositeKeyFromUserAward.Designer.cs" />
+    <Compile Remove="Migrations\20200303072356_UserAwardDeleteBehaviorChangedFromUser.cs" />
+    <Compile Remove="Migrations\20200303072356_UserAwardDeleteBehaviorChangedFromUser.Designer.cs" />
+    <Compile Remove="Migrations\20200303075634_UserAwardDropIdentityColumn.cs" />
+    <Compile Remove="Migrations\20200303075634_UserAwardDropIdentityColumn.Designer.cs" />
+    <Compile Remove="Migrations\20200303075722_UserAwardRecreateIdentityColumn.cs" />
+    <Compile Remove="Migrations\20200303075722_UserAwardRecreateIdentityColumn.Designer.cs" />
+    <Compile Remove="Migrations\20200305131308_InitialDBCreation.cs" />
+    <Compile Remove="Migrations\20200305131308_InitialDBCreation.Designer.cs" />
+    <Compile Remove="Migrations\20200305132415_InitialDBCreation.cs" />
+    <Compile Remove="Migrations\20200305132415_InitialDBCreation.Designer.cs" />
+    <Compile Remove="Migrations\20200305132644_InitialDBCreation.cs" />
+    <Compile Remove="Migrations\20200305132644_InitialDBCreation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,35 @@
+﻿@model RokoAwards.WebUI.Models.EditAwardModel
+@{
+    ViewData["Title"] = "EditAward";
+}
+
+<h1>Edit Award</h1>
+<div class="editAwardBlock">
+    <img src="@Url.Content(Model.ImagePath)" class="awardEdit_image" />
+    <form asp-action="EditAward" asp-controller="Award" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="AwardId" />
+        <input type="hidden" asp-for="ImagePath" />
+        <div class="form-group">
+            <input type="file" name="newImage" id="awardImage" />
+        </div>
+        <div class="form-group">
+            <label asp-for="AwardTitle" class="control-label">Award title</label>
+            <input asp-for="AwardTitle" class="form-control" />
+            <span asp-validation-for="AwardTitle" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AwardType" class="control-label">Award type</label>
+            <select asp-for="AwardType" class="form-control" asp-items="@ViewBag.AwardTypes"></select>
+            <span asp-validation-for="AwardType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control editAwardBlock_description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

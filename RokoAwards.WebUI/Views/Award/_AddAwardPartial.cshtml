@@ -1,0 +1,43 @@
+﻿@model RokoAwards.WebUI.Models.AddAwardModel
+
+<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="addAwardLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAwardLabel">Add award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="AddAward" asp-controller="Award">
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                    <div class="form-group">
+                        <label asp-for="AwardTitle" class="control-label"></label>
+                        <select asp-for="AwardTitle" class="form-control" asp-items="@ViewBag.Awards"></select>
+                        <span asp-validation-for="AwardTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RecepientEmail" class="control-label"></label>
+                        <select asp-for="RecepientEmail" class="form-control" asp-items="@ViewBag.Recepients"></select>
+                        <span asp-validation-for="RecepientEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FromEmail" class="control-label"></label>
+                        <select asp-for="FromEmail" class="form-control" asp-items="@ViewBag.UsersFrom"></select>
+                        <span asp-validation-for="FromEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control addAwardDescription"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-save="modalAddAward">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

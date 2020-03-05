@@ -1,0 +1,18 @@
+﻿@model RokoAwards.EFDataAccessLibrary.Models.Image
+@{
+    ViewData["Title"] = "DefaultAwardImage";
+}
+
+<div class="text-center">
+    <h1>DefaultUserImage</h1>
+    <div>
+        <img class="defaultImage" src="@Url.Content(Model.ImagePath)" />
+    </div>
+
+    <h3>Choose file to upload</h3>
+    <form asp-action="DefaultAwardImage" asp-controller="Award" method="post" enctype="multipart/form-data">
+        <input type="file" name="newImage" /><br />
+        <input type="submit" value="Upload" />
+    </form>
+</div>
+

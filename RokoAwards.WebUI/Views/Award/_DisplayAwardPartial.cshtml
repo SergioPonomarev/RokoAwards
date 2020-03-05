@@ -1,0 +1,22 @@
+﻿@model RokoAwards.EFDataAccessLibrary.Models.Award
+
+<div class="modal-content">
+    <div class="modal-header d-block">
+        <img src="@Url.Content(Model.Image.ImagePath)" class="awardDisplay_image" />
+        <h5>@Model.AwardTitle</h5>
+    </div>
+    <div class="modal-body">
+        <div><strong>Creater: </strong>@Model.Creater.Email</div>
+        <div><strong>Creating date: </strong>@Model.CreatingDate</div>
+        <div><strong>Award type: </strong>@Model.AwardType</div>
+        <div><strong>Description: </strong>@Model.Description</div>
+    </div>
+    <div class="modal-footer">
+        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+        {
+            <a class="btn btn-warning" href="@Url.Action("EditAward", "Award", new { awardId = Model.AwardId })">Edit</a>
+        }
+
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+</div>
+</div>

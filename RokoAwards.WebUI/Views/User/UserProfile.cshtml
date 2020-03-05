@@ -1,0 +1,134 @@
+﻿@model RokoAwards.EFDataAccessLibrary.Models.User
+@{
+    ViewData["Title"] = "UserProfile";
+}
+
+<div>
+    <h2 class="userProfileHeader">@Model.Email profile</h2>
+    <span class="editProfileBlock">
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            <button type="button" class="btn btn-warning" data-toggle="ajax-modal" data-target="#edit-user" data-url="@Url.Action("EditUserProfile", "User", new { email = Model.Email })">Edit Profile</button>
+
+            <div id="modal-placeholder"></div>
+        }
+    </span>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container">
+        <div class="userRoleBlock">
+            <span>User role: </span>
+            <span>@Model.Role.RoleName</span>
+        </div>
+        <div class="userRoleBlock">
+            <form class="form-inline" asp-action="SetRoleToUser" asp-controller="User" asp-route-email="@Model.Email" method="post">
+                <select class="mr-1" name="roleName" asp-items="@ViewBag.Roles"></select>
+                <button type="submit" class="btn btn-sm btn-primary">Set role</button>
+            </form>
+        </div>
+    </div>
+}
+
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col-3">
+            <img class="img-fluid" src="@Url.Content(Model.Image.ImagePath)" />
+            @if (User.Identity.Name == Model.Email)
+            {
+                <form class="form-inline" asp-action="SetUserImage" asp-controller="User" asp-route-email="@User.Identity.Name" method="post" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" name="newImage" class="custom-file-input" id="avaInput" />
+                            <label class="custom-file-label" for="avaInput"></label>
+                        </div>
+                        <div class="input-group-append">
+                            <input class="input-group-text" type="submit" value="Upload" />
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Model.FirstName @Model.LastName</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Joining</td>
+                        <td>@Model.DateOfJoining.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td>@Model.Department.DepartmentName</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>@Model.PositionName</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>@Model.City.CityName</td>
+                    </tr>
+                    <tr>
+                        <td>Reporting Manager Email</td>
+                        <td>@Model.ReportingManagerEmail</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<h3>Last awards</h3>
+<div class="container">
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    @foreach (var item in Model.UserAwardsReceived)
+    {
+        if (item.AwardDate.AddYears(1) > DateTime.Now)
+        {
+            <a class="compItem userAwardDisplay_url" href="@Url.Action("DisplayUserAward", "Award", new { userAwardId = item.UserAwardId })">
+                <div class="awardCard">
+                    <div class="awardCardHeader">
+                        <img class="awardCard_image" src="@Url.Content(item.AwardReceived.Image.ImagePath)" />
+                        <h4 class="awardCard_title">@item.AwardReceived.AwardTitle</h4>
+                    </div>
+                    <div class="awardCard_recepient"><strong>Recepient:</strong> @item.User.Email</div>
+                    <div class="awardCard_sender"><strong>Sender:</strong> @item.FromUser.Email</div>
+                    <div class="awardCard_date"><strong>Date:</strong> @item.AwardDate</div>
+                    <div class="awardCard_description"><strong>Description:</strong> @item.Description</div>
+                </div>
+            </a>
+        }
+    }
+</div>
+
+<h3>Archive awards</h3>
+<div class="container">
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    @foreach (var item in Model.UserAwardsReceived)
+    {
+        if (item.AwardDate.AddYears(1) <= DateTime.Now)
+        {
+            <a class="compItem userAwardDisplay_url" href="@Url.Action("DisplayUserAward", "Award", new { userAwardId = item.UserAwardId })">
+                <div class="awardCard">
+                    <div class="awardCardHeader">
+                        <img class="awardCard_image" src="@Url.Content(item.AwardReceived.Image.ImagePath)" />
+                        <h4 class="awardCard_title">@item.AwardReceived.AwardTitle</h4>
+                    </div>
+                    <div class="awardCard_recepient"><strong>Recepient:</strong> @item.User.Email</div>
+                    <div class="awardCard_sender"><strong>Sender:</strong> @item.FromUser.Email</div>
+                    <div class="awardCard_date"><strong>Date:</strong> @item.AwardDate</div>
+                    <div class="awardCard_description"><strong>Description:</strong> @item.Description</div>
+                </div>
+            </a>
+        }
+    }
+</div>

@@ -1,0 +1,19 @@
+﻿@model RokoAwards.WebUI.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search result</h1>
+
+<div class="list-group-flush mb-2">
+    @foreach (var user in Model.Users)
+    {
+        <a class="list-group-item list-group-item-action" asp-action="UserProfile" asp-controller="User" asp-route-email="@user.Email">
+            <img class="loggedinUserImage" src="@Url.Content(user.Image.ImagePath)" />
+            @user.Email @user.FirstName @user.LastName
+        </a>
+    }
+</div>
+
+<page-link page-model="Model.PageViewModel" page-action="Search" page-controller="Home"></page-link>
