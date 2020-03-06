@@ -40,27 +40,25 @@ namespace RokoAwards.EFDataAccessLibrary.DataAccess
                 ImagePath = "/Images/AwardImages/20680fd4-579e-44a1-befd-213981bf2fb3_greatdeveloper.jpg"
             };
 
-            context.Images.Add(defaultUserImage);
-            context.SaveChanges();
-            context.Images.Add(defaultAwardImage);
-            context.SaveChanges();
-            context.Images.Add(avaSergey);
-            context.SaveChanges();
-            context.Images.Add(thanksImage);
-            context.SaveChanges();
-            context.Images.Add(gdAward);
-            context.SaveChanges();
+            Image[] images = { defaultUserImage, defaultAwardImage, avaSergey, thanksImage, gdAward };
+
+            for (int i = 0; i < images.Length; i++)
+            {
+                context.Images.Add(images[i]);
+                context.SaveChanges();
+            }
 
             Role adminRole = new Role { RoleName = "Admin" };
             Role userRole = new Role { RoleName = "User" };
             Role managerRole = new Role { RoleName = "Manager" };
 
-            context.Roles.Add(adminRole);
-            context.SaveChanges();
-            context.Roles.Add(userRole);
-            context.SaveChanges();
-            context.Roles.Add(managerRole);
-            context.SaveChanges();
+            Role[] roles = { adminRole, userRole, managerRole };
+
+            for (int i = 0; i < roles.Length; i++)
+            {
+                context.Roles.Add(roles[i]);
+                context.SaveChanges();
+            }
 
             City saratov = new City { CityName = "Saratov" };
             context.Cities.Add(saratov);
@@ -82,36 +80,13 @@ namespace RokoAwards.EFDataAccessLibrary.DataAccess
             Department dep14 = new Department { DepartmentName = "Quality Assurance Department" };
             Department dep15 = new Department { DepartmentName = "ROKO University" };
 
-            context.Departments.Add(dep1);
-            context.SaveChanges();
-            context.Departments.Add(dep2);
-            context.SaveChanges();
-            context.Departments.Add(dep3);
-            context.SaveChanges();
-            context.Departments.Add(dep4);
-            context.SaveChanges();
-            context.Departments.Add(dep5);
-            context.SaveChanges();
-            context.Departments.Add(dep6);
-            context.SaveChanges();
-            context.Departments.Add(dep7);
-            context.SaveChanges();
-            context.Departments.Add(dep8);
-            context.SaveChanges();
-            context.Departments.Add(dep9);
-            context.SaveChanges();
-            context.Departments.Add(dep10);
-            context.SaveChanges();
-            context.Departments.Add(dep11);
-            context.SaveChanges();
-            context.Departments.Add(dep12);
-            context.SaveChanges();
-            context.Departments.Add(dep13);
-            context.SaveChanges();
-            context.Departments.Add(dep14);
-            context.SaveChanges();
-            context.Departments.Add(dep15);
-            context.SaveChanges();
+            Department[] departments = { dep1, dep2, dep3, dep4, dep5, dep6, dep7, dep8, dep9, dep10, dep11, dep12, dep13, dep14, dep15 };
+
+            for (int i = 0; i < departments.Length; i++)
+            {
+                context.Departments.Add(departments[i]);
+                context.SaveChanges();
+            }
 
             User admin = new User
             {
@@ -193,16 +168,13 @@ namespace RokoAwards.EFDataAccessLibrary.DataAccess
                 RoleId = 3
             };
 
-            context.Users.Add(admin);
-            context.SaveChanges();
-            context.Users.Add(testDummy);
-            context.SaveChanges();
-            context.Users.Add(rokoUniversity);
-            context.SaveChanges();
-            context.Users.Add(anotherTest);
-            context.SaveChanges();
-            context.Users.Add(anastasiaBaeva);
-            context.SaveChanges();
+            User[] users = { admin, testDummy, rokoUniversity, anotherTest, anastasiaBaeva };
+
+            for (int i = 0; i < users.Length; i++)
+            {
+                context.Users.Add(users[i]);
+                context.SaveChanges();
+            }
 
             Award greatDeveloper = new Award
             {
@@ -234,12 +206,13 @@ namespace RokoAwards.EFDataAccessLibrary.DataAccess
                 AwardTitle = "Thanks"
             };
 
-            context.Awards.Add(greatDeveloper);
-            context.SaveChanges();
-            context.Awards.Add(awardWithLargeDescription);
-            context.SaveChanges();
-            context.Awards.Add(thanksAward);
-            context.SaveChanges();
+            Award[] awards = { greatDeveloper, awardWithLargeDescription, thanksAward };
+
+            for (int i = 0; i < awards.Length; i++)
+            {
+                context.Awards.Add(awards[i]);
+                context.SaveChanges();
+            }
 
             UserAward ua1 = new UserAward
             {
@@ -327,28 +300,17 @@ namespace RokoAwards.EFDataAccessLibrary.DataAccess
                 AwardIdReceived = 3,
                 FromUserId = 5,
                 AwardIdSent = 3,
-                AwardDate = DateTime.Parse("03/03/2019"),
+                AwardDate = DateTime.Parse("03/03/2020"),
                 Description = "For good app."
             };
 
-            context.UserAwards.Add(ua1);
-            context.SaveChanges();
-            context.UserAwards.Add(ua2);
-            context.SaveChanges();
-            context.UserAwards.Add(ua3);
-            context.SaveChanges();
-            context.UserAwards.Add(ua4);
-            context.SaveChanges();
-            context.UserAwards.Add(ua5);
-            context.SaveChanges();
-            context.UserAwards.Add(ua6);
-            context.SaveChanges();
-            context.UserAwards.Add(ua7);
-            context.SaveChanges();
-            context.UserAwards.Add(ua8);
-            context.SaveChanges();
-            context.UserAwards.Add(ua9);
-            context.SaveChanges();
+            UserAward[] userAwards = { ua1, ua2, ua3, ua4, ua5, ua6, ua7, ua8, ua9 };
+
+            for (int i = 0; i < userAwards.Length; i++)
+            {
+                context.UserAwards.Add(userAwards[i]);
+                context.SaveChanges();
+            }
         }
     }
 }
